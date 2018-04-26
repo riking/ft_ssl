@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 18:28:53 by kyork             #+#    #+#             */
-/*   Updated: 2018/04/25 21:05:23 by kyork            ###   ########.fr       */
+/*   Updated: 2018/04/26 16:07:22 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct		s_md5state {
 	t_u32		s[4];
 	AU32_BYTE	buf[MD5_CHUNK_SIZE];
 	int			bufsz;
-	size_t		len;
+	t_u64		len;
 }					t_md5state;
 
 /*
