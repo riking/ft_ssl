@@ -1,0 +1,8 @@
+build/
+libft.a
+libftprintf.a
+libftfuncs.a
+
+ft_printf/.git
+.DS_Store
+._.DS_Store
