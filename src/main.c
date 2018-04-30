@@ -6,13 +6,14 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 17:55:56 by kyork             #+#    #+#             */
-/*   Updated: 2018/04/25 18:26:54 by kyork            ###   ########.fr       */
+/*   Updated: 2018/04/30 13:23:53 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "operations.h"
 #include <libft.h>
 #include <ft_printf.h>
+#include <stdlib.h>
 
 static void	cmd_list(enum e_commandtype ty) {
 	size_t	idx;

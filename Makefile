@@ -6,7 +6,7 @@
 #    By: kyork <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/09 19:11:26 by kyork             #+#    #+#              #
-#    Updated: 2018/04/25 17:55:34 by kyork            ###   ########.fr        #
+#    Updated: 2018/04/30 13:23:35 by kyork            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBS		= libft/libft.a
 
 # Flags start
 CFLAGS		+= -Wall -Wextra -Wmissing-prototypes
-CFLAGS		+= -I includes/
+CFLAGS		+= -I include/
 LDFLAGS		+= -Wall -Wextra
 
 ifndef NO_WERROR
