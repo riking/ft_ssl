@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 19:00:22 by kyork             #+#    #+#             */
-/*   Updated: 2018/04/25 21:13:48 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 14:57:57 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@
 
 #define ROL(x, n) (((x) << (n)) | ((x) >> (32-(n))))
 
-#define AA (st->s[(0 + (o->rot & 3)) % 4])
-#define BB (st->s[(1 + (o->rot & 3)) % 4])
-#define CC (st->s[(2 + (o->rot & 3)) % 4])
-#define DD (st->s[(3 + (o->rot & 3)) % 4])
+#define AA (st->s[(4 - (o->rot & 3)) % 4])
+#define BB (st->s[(5 - (o->rot & 3)) % 4])
+#define CC (st->s[(6 - (o->rot & 3)) % 4])
+#define DD (st->s[(7 - (o->rot & 3)) % 4])
 
 static void				md5_roundop(t_md5state *st, t_md5hack *x,
 									const t_roundconf *c, const t_roundop *o)
 {
-	AA = BB + ROL(AA + c->f(BB, CC, DD) + x->x[o->k] + g_md5_tvals[o->i], o->s);
+	AA = AA + c->f(BB, CC, DD) + x->x[o->k] + g_md5_tvals[o->i];
+	AA = ROL(AA, o->s) + BB;
 }
 
 void					md5_round(t_md5state *st, t_md5hack *x,
