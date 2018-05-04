@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 13:13:30 by kyork             #+#    #+#             */
-/*   Updated: 2018/04/30 13:24:31 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 16:15:09 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int				ft_ssl_md5(int argc, char **argv)
 
 int				main(int argc, char **argv)
 {
-	return ft_ssl_md5(argc, argv);
+	return (ft_ssl_md5(argc, argv));
 }
 #endif
