@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 17:55:56 by kyork             #+#    #+#             */
-/*   Updated: 2018/04/30 13:23:53 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 21:41:01 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int			main(int argc, char **argv) {
 	while (g_command_list[idx].command_name)
 	{
 		if (0 == ft_strcmp(g_command_list[idx].command_name, argv[1]))
+		{
 			return (g_command_list[idx].command_func(argc, argv));
+		}
 		idx++;
 	}
 	usage(argv[1]);

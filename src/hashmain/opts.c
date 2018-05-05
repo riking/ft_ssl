@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 19:30:14 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 21:28:29 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 21:39:52 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int				ft_ssl_hashmain(int argc, char **argv)
 {
 	t_flags		flags;
 	t_optparse	optparse;
+	int			ret;
 
 	(void)argc;
 	if (hashmain_flag_init(&flags, argv[1]) < 0)
@@ -123,5 +124,7 @@ int				ft_ssl_hashmain(int argc, char **argv)
 		return (2);
 	}
 	hashmain_setup_hmac(&flags);
-	return (hashmain_run(&flags));
+	ret = hashmain_run(&flags);
+	ft_ary_destroy(&(flags.ops));
+	return (ret);
 }
