@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:26:47 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 20:06:44 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 20:31:09 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,18 @@
 
 /*
 ** vtable for hash functions.
-** write() will never fail.
+** init - allocate and return a new state struct if NULL is passed, else
+**        create a clone of the given state struct.
+** free - deallocate the given state struct.
+** write - add the given data into the hash and return the number of bytes
+**         written.
+** output_size - number of bytes required for the outbuf of finish().
+** finish - write the binary form of the hash sum into outbuf.  the state struct
+**          remains valid for further writes and must still be freed.
 */
 
 typedef struct					s_ft_hash_vtable {
-	void		*(*init)(void);
+	void		*(*init)(void *state);
 	void		(*free)(void *state);
 	ssize_t		(*write)(void *state, t_u8 *buf, size_t len);
 	size_t		output_size;
@@ -30,14 +37,14 @@ typedef struct					s_ft_hash_vtable {
 }					t_ft_hash_vtable;
 
 typedef struct					s_ft_hash {
-	t_ft_hash_vtable	*vtable;
-	void				*state;
+	const t_ft_hash_vtable	*vtable;
+	void					*state;
 }								t_ft_hash;
 
 typedef struct					s_ft_hash_name {
-	t_ft_hash_vtable	*vtable;
-	const char			*name;
-	const char			*name_rich;
+	const t_ft_hash_vtable	*vtable;
+	const char				*name;
+	const char				*name_rich;
 }								t_ft_hash_name;
 
 extern const t_ft_hash_vtable	g_md5_hash_vtable;
@@ -45,5 +52,7 @@ extern const t_ft_hash_vtable	g_sha256_hash_vtable;
 extern const t_ft_hash_vtable	g_hmac_hash_vtable;
 
 extern const t_ft_hash_name		g_hash_list[];
+
+int								ft_ssl_hashmain(int argc, char **argv);
 
 #endif
