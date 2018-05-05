@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 16:24:19 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 17:27:59 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 20:11:04 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			sha256_write(t_sha256state *st, t_u8 *buf, size_t len)
 
 	if (st->bufsz)
 	{
-		tmpsz = MIN(SHA256_BLOCK_SIZE - st->bufsz, len);
+		tmpsz = MIN((size_t)(SHA256_BLOCK_SIZE - st->bufsz), len);
 		ft_memcpy(st->buf + st->bufsz, buf, tmpsz);
 		st->bufsz += tmpsz;
 		ADJ_SZ(buf, len, st->len, tmpsz);

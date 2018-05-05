@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 18:28:53 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 20:06:38 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 20:32:18 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_md5state				md5_init(void);
 void					md5_write(t_md5state *st, t_u8 *buf, size_t len);
 void					md5_finish(t_md5state *st, t_u8 *outbuf);
 
-void					*md5g_init(void);
+void					*md5g_init(void *state);
 void					md5g_free(void *state);
 ssize_t					md5g_write(void *state, t_u8 *buf, size_t len);
 void					md5g_finish(void *state, t_u8 *outbuf);

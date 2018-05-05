@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 14:52:14 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 16:13:10 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 20:10:18 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			md5_write(t_md5state *st, t_u8 *buf, size_t len)
 
 	if (st->bufsz)
 	{
-		tmpsz = MIN(MD5_CHUNK_SIZE - st->bufsz, len);
+		tmpsz = MIN((size_t)(MD5_CHUNK_SIZE - st->bufsz), len);
 		ft_memcpy(st->buf + st->bufsz, buf, tmpsz);
 		st->bufsz += tmpsz;
 		ADJ_SZ(buf, len, st->len, tmpsz);

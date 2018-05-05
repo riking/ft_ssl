@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 16:16:32 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 20:07:02 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 20:34:29 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_sha256state			sha256_init(void);
 void					sha256_write(t_sha256state *st, t_u8 *buf, size_t len);
 void					sha256_finish(t_sha256state *st, t_u8 *outbuf);
 
-void					*sha256g_init(void);
+void					*sha256g_init(void *state);
 void					sha256g_free(void *state);
 ssize_t					sha256g_write(void *state, t_u8 *buf, size_t len);
 void					sha256g_finish(void *state, t_u8 *outbuf);

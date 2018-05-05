@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 13:13:30 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 17:07:48 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 20:10:43 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int				ft_ssl_sha256(int argc, char **argv)
 	t_u8			buf[128];
 	t_u8			digest[SHA256_OUTPUT_SIZE];
 
+	(void)argc;
+	(void)argv;
 	ctx = sha256_init();
 	while (1)
 	{
