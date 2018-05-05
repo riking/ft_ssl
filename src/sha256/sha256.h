@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 16:16:32 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 16:24:08 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 20:07:02 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define FT_SSL_SHA256_H
 
 # include "../commontypes.h"
+# include "../hash.h"
 # include <stdalign.h>
 
-int					ft_ssl_sha256(int argc, char **argv);
+int						ft_ssl_sha256(int argc, char **argv);
 
 /*
 ** in bytes
@@ -30,23 +31,28 @@ int					ft_ssl_sha256(int argc, char **argv);
 ** sha256state holds a partially computed hash. copying OK.
 ** buf contains unprocessed bytes, bufsz is the number of valid bytes inside
 */
-typedef struct		s_sha256state {
+typedef struct			s_sha256state {
 	t_u32		s[8];
 	AU32_BYTE	buf[SHA256_BLOCK_SIZE];
 	int			bufsz;
 	t_u64		len;
-}					t_sha256state;
+}						t_sha256state;
 
 /*
 ** sha256_core: exposed API
 */
-t_sha256state		sha256_init(void);
-void				sha256_write(t_sha256state *st, t_u8 *buf, size_t len);
-void				sha256_finish(t_sha256state *st, t_u8 *outbuf);
+t_sha256state			sha256_init(void);
+void					sha256_write(t_sha256state *st, t_u8 *buf, size_t len);
+void					sha256_finish(t_sha256state *st, t_u8 *outbuf);
+
+void					*sha256g_init(void);
+void					sha256g_free(void *state);
+ssize_t					sha256g_write(void *state, t_u8 *buf, size_t len);
+void					sha256g_finish(void *state, t_u8 *outbuf);
 
 /*
 ** sha256_core: internal
 */
-void				sha256_block(t_sha256state *st, t_u8 *buf);
+void					sha256_block(t_sha256state *st, t_u8 *buf);
 
 #endif
