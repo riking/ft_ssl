@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 13:13:30 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 16:15:09 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 16:29:28 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int				ft_ssl_md5(int argc, char **argv)
 		return (1);
 	md5_finish(&ctx, digest);
 	ft_printf("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
-			"%02x", digest[0], digest[1], digest[2], digest[3], digest[4],
+			"%02x\n", digest[0], digest[1], digest[2], digest[3], digest[4],
 			digest[5], digest[6], digest[7], digest[8], digest[9], digest[10],
 			digest[11], digest[12], digest[13], digest[14], digest[15]);
 	return (0);

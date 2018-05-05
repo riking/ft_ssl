@@ -6,13 +6,12 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 21:01:09 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 16:12:57 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 17:15:59 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "md5_core.h"
 #include <libft.h>
-#include <ft_printf.h>
 #include <stdalign.h>
 
 /*

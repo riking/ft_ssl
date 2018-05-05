@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 15:58:06 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 16:14:55 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 16:32:03 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			md5_finish(t_md5state *st1, t_u8 *outbuf)
 	if (st.bufsz != 0)
 		abort();
 	i = 0;
-	while (i < 4)
+	while (i < (MD5_OUTPUT_SIZE / 4))
 	{
 		outbuf[i * 4 + 0] = (t_u8)(st.s[i] >> 0);
 		outbuf[i * 4 + 1] = (t_u8)(st.s[i] >> 8);
