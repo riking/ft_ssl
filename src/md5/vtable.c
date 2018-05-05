@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:39:10 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 20:35:23 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 20:36:36 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 void					*md5g_init(void *state)
 {
-	t_md5state	st;
 	t_md5state	*st1;
 	t_md5state	*st2;
 
@@ -30,8 +29,7 @@ void					*md5g_init(void *state)
 	}
 	else
 	{
-		st = md5_init();
-		*st2 = st;
+		*st2 = md5_init();
 		return (st2);
 	}
 }

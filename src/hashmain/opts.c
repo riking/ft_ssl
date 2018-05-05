@@ -6,11 +6,11 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 19:30:14 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 19:59:19 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 21:28:29 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "opts.h"
+#include "hashmain.h"
 #include "../optparse.h"
 
 #include <libft.h>
@@ -24,6 +24,8 @@ static int		hashmain_onflag2(t_flags *flags,
 		flags->hmac_key = nxt;
 		return (1);
 	}
+	else if (0 == ft_strcmp(flag, "c"))
+		flags->with_colons = true;
 	else
 		return (-1);
 	return (0);
@@ -32,7 +34,6 @@ static int		hashmain_onflag2(t_flags *flags,
 int				hashmain_onflag(void *data, const char *flag, const char *nxt)
 {
 	t_flags		*flags;
-	char		*tmp;
 	t_hashop	op;
 
 	flags = data;
@@ -72,15 +73,16 @@ static int		hashmain_flag_init(t_flags *flags, char *alg)
 	size_t	idx;
 
 	idx = 0;
-	flags->alg = NULL;
+	flags->alg.vtable = NULL;
+	flags->alg.state = NULL;
 	while (g_hash_list[idx++].vtable)
 		if (0 == ft_strcmp(alg, g_hash_list[idx - 1].name))
 		{
-			flags->alg = g_hash_list[idx - 1].vtable;
+			flags->alg.vtable = g_hash_list[idx - 1].vtable;
 			flags->name = g_hash_list[idx - 1].name;
 			flags->name_rich = g_hash_list[idx - 1].name_rich;
 		}
-	if (!flags->alg)
+	if (!flags->alg.vtable)
 	{
 		ft_dprintf(2, "%s: hash: error: unknown algorithm name '%s'\n",
 				ft_progname(), alg);
@@ -89,6 +91,8 @@ static int		hashmain_flag_init(t_flags *flags, char *alg)
 	flags->hmac_key = NULL;
 	flags->ops = ft_ary_create(sizeof(t_hashop));
 	flags->outfmt = HASHMAIN_FMT_RICH;
+	flags->stdin_copy = false;
+	flags->with_colons = false;
 	return (0);
 }
 
@@ -106,8 +110,8 @@ int				ft_ssl_hashmain(int argc, char **argv)
 {
 	t_flags		flags;
 	t_optparse	optparse;
-	int			r;
 
+	(void)argc;
 	if (hashmain_flag_init(&flags, argv[1]) < 0)
 		return (2);
 	optparse.data = &flags;
@@ -118,5 +122,6 @@ int				ft_ssl_hashmain(int argc, char **argv)
 		ft_dprintf(2, "%s", g_hashmain_help);
 		return (2);
 	}
+	hashmain_setup_hmac(&flags);
 	return (hashmain_run(&flags));
 }

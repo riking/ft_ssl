@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   hmac.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/25 17:56:23 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 21:27:49 by kyork            ###   ########.fr       */
+/*   Created: 2018/05/04 20:37:39 by kyork             #+#    #+#             */
+/*   Updated: 2018/05/04 20:40:42 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "operations.h"
+#include "hashmain.h"
 
-#include "md5/md5.h"
-#include "sha256/sha256.h"
+#include <libft.h>
+#include <ft_printf.h>
 
-const t_mainopinfo		g_command_list[] = {
-	{"md5", CMD_HASH, ft_ssl_hashmain, false},
-	{"sha256", CMD_HASH, ft_ssl_hashmain, false},
-};
-
-const t_ft_hash_name	g_hash_list[] = {
-	{&g_md5_hash_vtable, "md5", "MD5"},
-	{&g_sha256_hash_vtable, "sha256", "SHA256"},
-	{NULL, NULL, NULL},
-};
+void			hashmain_setup_hmac(t_flags *flags)
+{
+	if (!flags->hmac_key)
+		return ;
+	ft_dprintf(2, "%s: hash: hmac not implemented\n", ft_progname());
+}

@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:48:24 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 20:35:16 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/04 20:36:54 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 void					*sha256g_init(void *state)
 {
-	t_sha256state	st;
 	t_sha256state	*st1;
 	t_sha256state	*st2;
 
@@ -30,8 +29,7 @@ void					*sha256g_init(void *state)
 	}
 	else
 	{
-		st = sha256_init();
-		*st2 = st;
+		*st2 = sha256_init();
 		return (st2);
 	}
 }
