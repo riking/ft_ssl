@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 17:55:56 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 21:41:01 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 15:04:27 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include <ft_printf.h>
 #include <stdlib.h>
 
-static void	cmd_list(enum e_commandtype ty) {
+static void	cmd_list(enum e_commandtype ty)
+{
 	size_t	idx;
 
 	idx = 0;
@@ -28,7 +29,8 @@ static void	cmd_list(enum e_commandtype ty) {
 	}
 }
 
-static void	usage(char *bad_cmd) {
+static void	usage(char *bad_cmd)
+{
 	ft_dprintf(2, "%s: Error: '%s' is an invalid command.\n", ft_progname(),
 			bad_cmd);
 	ft_dprintf(2, "\nStandard commands:\n");
@@ -39,7 +41,8 @@ static void	usage(char *bad_cmd) {
 	cmd_list(CMD_CIPHER);
 }
 
-int			main(int argc, char **argv) {
+int			main(int argc, char **argv)
+{
 	size_t			idx;
 
 	ft_set_progname(argv[0]);

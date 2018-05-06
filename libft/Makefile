@@ -94,8 +94,8 @@ ifndef NO_WERROR
 endif
 
 ifeq ($(DEBUG), 1)
-	#CFLAGS	+= -fsanitize=address
-	#LDFLAGS	+= -fsanitize=address
+	CFLAGS	+= -g -fsanitize=address
+	LDFLAGS	+= -g -fsanitize=address
 else
 	#CFLAGS	+= -O3 -fomit-frame-pointer -DNDEBUG -flto
 	#LDFLAGS	+= -O3 -fomit-frame-pointer -DNDEBUG -flto

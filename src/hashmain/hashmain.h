@@ -6,12 +6,12 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:57:15 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 21:20:51 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 15:05:25 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SSL_HASHMAIN_OPTS_H
-# define FT_SSL_HASHMAIN_OPTS_H
+#ifndef FT_SSL_HASHMAIN_HASHMAIN_H
+# define FT_SSL_HASHMAIN_HASHMAIN_H
 
 # include "../hash.h"
 # include <libft.h>

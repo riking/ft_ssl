@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:26:47 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 14:42:47 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 15:05:01 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct					s_ft_hash_vtable {
 	void		(*finish)(void *state, t_u8 *outbuf);
 	size_t		output_size;
 	size_t		block_size;
-}					t_ft_hash_vtable;
+}								t_ft_hash_vtable;
 
 typedef struct					s_ft_hash {
 	const t_ft_hash_vtable	*vtable;

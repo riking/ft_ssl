@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 19:30:14 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 14:47:22 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 15:05:58 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ static int		hashmain_flag_init(t_flags *flags, char *alg)
 }
 
 const char		*g_hashmain_help = "options are\n"
-	"-p         copy stdin to stdout and append the checksum\n"
-	"-q         quiet mode (do not print leader before file hash)\n"
-	"-r         coreutils output format\n"
-	"-s string  hash the given string\n"
-	"-hmac key  create a HMAC digest with given key\n"
-	"\n"
-	"provide filename parameters to hash them\n"
-	"default operation (no flags, no filenames) is to hash stdin\n";
+"-p         copy stdin to stdout and append the checksum\n"
+"-q         quiet mode (do not print leader before file hash)\n"
+"-r         coreutils output format\n"
+"-s string  hash the given string\n"
+"-hmac key  create a HMAC digest with given key\n"
+"\n"
+"provide filename parameters to hash them\n"
+"default operation (no flags, no filenames) is to hash stdin\n";
 
 int				ft_ssl_hashmain(int argc, char **argv)
 {

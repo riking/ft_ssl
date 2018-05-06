@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 19:21:53 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 19:29:23 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 15:02:16 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_optparse {
 
 /*
 ** Pass this function (argv + 2) - strip out the binary name and subcommand
-** name. 
+** name.
 */
 
 int				parse_opts(t_optparse *opts, char **argv1);

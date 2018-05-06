@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 20:21:39 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 21:38:27 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 15:06:29 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,8 @@ int				hashmain_run(t_flags *flags)
 	idx = 0;
 	while (idx < flags->ops.item_count)
 	{
-		any_err |= hashmain_do_hash(flags, (t_hashop*)ft_ary_get(&flags->ops, idx));
+		any_err |= hashmain_do_hash(flags,
+				(t_hashop*)ft_ary_get(&flags->ops, idx));
 		idx++;
 	}
 	return (any_err != 0);

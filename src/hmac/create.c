@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 13:34:38 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 14:56:39 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 15:03:36 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 ** if key is too big, hash it.
 ** if key is small, zero-pad a copy so we can unconditionally free() later
 */
-static t_u8*		preprocess_key(t_hmac_state *st,
+
+static t_u8			*preprocess_key(t_hmac_state *st,
 							const char *key, size_t key_len)
 {
 	void			*tmp_outer;
@@ -52,6 +53,7 @@ static t_u8*		preprocess_key(t_hmac_state *st,
 /*
 ** initalize the pads
 */
+
 static void			init_key(t_hmac_state *st,
 							const char *key, size_t key_len)
 {
