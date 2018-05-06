@@ -6,7 +6,7 @@
 #    By: kyork <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/09 19:11:26 by kyork             #+#    #+#              #
-#    Updated: 2018/05/04 21:22:48 by kyork            ###   ########.fr        #
+#    Updated: 2018/05/06 14:42:05 by kyork            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME		= ft_ssl
 FILENAMES	+= main.c operations.c optparse.c
 FILENAMES	+= md5/main.c md5/block.c md5/finish.c md5/md5_roundconf.c md5/vtable.c md5/write.c
 FILENAMES	+= sha256/main.c sha256/finish.c sha256/round.c sha256/vtable.c sha256/write.c
+FILENAMES	+= hmac/create.c hmac/write.c
 FILENAMES	+= hashmain/opts.c hashmain/run.c hashmain/hmac.c
 
 OBJS		= $(addprefix build/, $(FILENAMES:.c=.o))

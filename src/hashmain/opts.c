@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 19:30:14 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 21:39:52 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 14:47:22 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int				ft_ssl_hashmain(int argc, char **argv)
 	}
 	hashmain_setup_hmac(&flags);
 	ret = hashmain_run(&flags);
+	flags.alg.vtable->free(flags.alg.state);
 	ft_ary_destroy(&(flags.ops));
 	return (ret);
 }

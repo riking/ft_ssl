@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:39:10 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 20:36:36 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 14:43:06 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ const t_ft_hash_vtable	g_md5_hash_vtable = {
 	&md5g_init,
 	&md5g_free,
 	&md5g_write,
-	MD5_OUTPUT_SIZE,
 	&md5g_finish,
+	MD5_OUTPUT_SIZE,
+	MD5_CHUNK_SIZE,
 };
 

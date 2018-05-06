@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 16:43:23 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 17:27:33 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 15:00:44 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,15 @@ static void			sha256_round(t_sha256work *w, t_s8 i)
 	SB = SA;
 	SA = t1 + t2;
 }
+
+/*
+** #include <ft_printf.h>
+** i = -1;
+** ft_printf("[SCHEDULE]");
+** while (++i < 64)
+**   ft_printf(" %08X", w.w[i]);
+** ft_printf("\n");
+*/
 
 void				sha256_block(t_sha256state *st, t_u8 *buf)
 {

@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:48:24 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 20:36:54 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 14:43:33 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ const t_ft_hash_vtable	g_sha256_hash_vtable = {
 	&sha256g_init,
 	&sha256g_free,
 	&sha256g_write,
-	SHA256_OUTPUT_SIZE,
 	&sha256g_finish,
+	SHA256_OUTPUT_SIZE,
+	SHA256_BLOCK_SIZE,
 };
 
