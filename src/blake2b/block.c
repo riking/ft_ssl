@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 15:32:09 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 17:30:57 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 17:37:05 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,17 +103,14 @@ static void							blake2b_round(
 		const t_blake2b_sigma s, t_u64 *m, t_u64 *v)
 {
 	ft_printf("[MSIGMA] %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX\n", m[s[0]], m[s[1]], m[s[2]], m[s[3]], m[s[4]], m[s[5]], m[s[6]], m[s[7]], m[s[8]], m[s[9]], m[s[10]], m[s[11]], m[s[12]], m[s[13]], m[s[14]], m[s[15]]);
-	ft_printf("[STATE0] %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX\n", v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11], v[12], v[13], v[14], v[15]);
 	blake2b_roundop1(&g_blake2b_rounds[0], s, m, v);
 	blake2b_roundop1(&g_blake2b_rounds[1], s, m, v);
 	blake2b_roundop1(&g_blake2b_rounds[2], s, m, v);
 	blake2b_roundop1(&g_blake2b_rounds[3], s, m, v);
-	ft_printf("[STATE0.3] %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX\n", v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11], v[12], v[13], v[14], v[15]);
 	blake2b_roundop2(&g_blake2b_rounds[0], s, m, v);
 	blake2b_roundop2(&g_blake2b_rounds[1], s, m, v);
 	blake2b_roundop2(&g_blake2b_rounds[2], s, m, v);
 	blake2b_roundop2(&g_blake2b_rounds[3], s, m, v);
-	ft_printf("[STATE1] %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX\n", v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11], v[12], v[13], v[14], v[15]);
 	blake2b_roundop1(&g_blake2b_rounds[4], s, m, v);
 	blake2b_roundop1(&g_blake2b_rounds[5], s, m, v);
 	blake2b_roundop1(&g_blake2b_rounds[6], s, m, v);
@@ -122,7 +119,6 @@ static void							blake2b_round(
 	blake2b_roundop2(&g_blake2b_rounds[5], s, m, v);
 	blake2b_roundop2(&g_blake2b_rounds[6], s, m, v);
 	blake2b_roundop2(&g_blake2b_rounds[7], s, m, v);
-	//ft_printf("[STATE2] %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX\n", v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11], v[12], v[13], v[14], v[15]);
 }
 
 void								blake2b_block(t_blake2b_state *state,
@@ -147,9 +143,11 @@ void								blake2b_block(t_blake2b_state *state,
 	i = -1;
 	while (++i < 12)
 		blake2b_round(g_precomputed[i], m, v);
+	ft_printf("[STATE1] %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX\n", v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11], v[12], v[13], v[14], v[15]);
 	i = -1;
 	while (++i < 8)
-		state->h[i] = v[i] ^ v[i + 8];
+		state->h[i] ^= v[i] ^ v[i + 8];
+	ft_printf("[BLOCKE] %016llX %016llX | %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX\n", state->c[0], state->c[1], state->h[0], state->h[1], state->h[2], state->h[3], state->h[4], state->h[5], state->h[6], state->h[7]);
 }
 
 void								blake2b_reset(t_blake2b_state *st)
