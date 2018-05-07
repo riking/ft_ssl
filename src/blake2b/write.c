@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 15:27:56 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 17:42:40 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/07 14:27:55 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ void			blake2b_finish(void *state, t_u8 *outbuf)
 	ft_memcpy(buf, st.buf, st.bufsz);
 	remaining = BLAKE2B_BLOCK_SIZE - st.bufsz;
 	ft_memcpy(c, st.c, sizeof(t_u64) * 2);
-	if (st.c[0] < remaining) {
+	if (st.c[0] < remaining)
 		st.c[1]--;
-	}
 	st.c[0] -= remaining;
 	blake2b_block(&st, buf, 0xFFFFFFFFFFFFFFFFULL);
 	i = -1;

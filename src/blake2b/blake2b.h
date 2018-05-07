@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 15:18:08 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 16:31:49 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/07 14:28:04 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ typedef struct			s_blake2b_state {
 	t_u8		key[BLAKE2B_BLOCK_SIZE];
 	int			keysz;
 }						t_blake2b_state;
-
-/*
-**
-*/
 
 t_ft_hash				blake2b_init_key(int hash_size,
 							t_u8 *key, size_t key_len);
