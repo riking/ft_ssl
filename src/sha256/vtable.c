@@ -6,13 +6,14 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:48:24 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 15:04:46 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/07 16:23:23 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hash.h"
 #include "./sha256.h"
 
+#include <libft.h>
 #include <stdlib.h>
 
 void					*sha256g_init(void *state)
@@ -20,7 +21,7 @@ void					*sha256g_init(void *state)
 	t_sha256state	*st1;
 	t_sha256state	*st2;
 
-	st2 = malloc(sizeof(t_sha256state));
+	st2 = ft_memalloc(sizeof(t_sha256state));
 	if (state)
 	{
 		st1 = state;

@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 20:21:39 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 15:06:29 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/07 16:24:26 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char		*hexprint_digest(t_flags *flags, t_u8 *digest)
 	size_t	idx;
 
 	outsz = flags->alg.vtable->output_size;
-	digest_str = malloc(outsz * 3 + 1);
+	digest_str = ft_memalloc(outsz * 3 + 1);
 	idx = 0;
 	while (idx < outsz)
 	{

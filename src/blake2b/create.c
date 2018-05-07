@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 16:26:52 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 16:43:41 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/07 16:24:08 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_ft_hash				blake2b_init_key(int hash_size,
 		ret.vtable = &g_blake2b_256_hash_vtable;
 	else
 		abort();
-	st = malloc(sizeof(t_blake2b_state));
+	st = ft_memalloc(sizeof(t_blake2b_state));
 	blake2b_init(st, hash_size, key, key_len);
 	ret.state = st;
 	return (ret);
@@ -52,7 +52,7 @@ void					*blake2b_512init(void *state)
 	t_blake2b_state *st1;
 	t_blake2b_state *st2;
 
-	st2 = malloc(sizeof(t_blake2b_state));
+	st2 = ft_memalloc(sizeof(t_blake2b_state));
 	if (state)
 	{
 		st1 = state;
@@ -68,7 +68,7 @@ void					*blake2b_384init(void *state)
 	t_blake2b_state *st1;
 	t_blake2b_state *st2;
 
-	st2 = malloc(sizeof(t_blake2b_state));
+	st2 = ft_memalloc(sizeof(t_blake2b_state));
 	if (state)
 	{
 		st1 = state;
@@ -84,7 +84,7 @@ void					*blake2b_256init(void *state)
 	t_blake2b_state *st1;
 	t_blake2b_state *st2;
 
-	st2 = malloc(sizeof(t_blake2b_state));
+	st2 = ft_memalloc(sizeof(t_blake2b_state));
 	if (state)
 	{
 		st1 = state;

@@ -6,13 +6,14 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:39:10 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 16:26:21 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/07 16:23:37 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hash.h"
 #include "./md5.h"
 
+#include <libft.h>
 #include <stdlib.h>
 
 void					*md5g_init(void *state)
@@ -20,7 +21,7 @@ void					*md5g_init(void *state)
 	t_md5state	*st1;
 	t_md5state	*st2;
 
-	st2 = malloc(sizeof(t_md5state));
+	st2 = ft_memalloc(sizeof(t_md5state));
 	if (state)
 	{
 		st1 = state;
