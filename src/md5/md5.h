@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 18:28:53 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 20:32:18 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 16:25:03 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int						ft_ssl_md5(int argc, char **argv);
 /*
 ** in bytes
 */
-# define MD5_CHUNK_SIZE 64
+# define MD5_BLOCK_SIZE 64
 # define MD5_OUTPUT_SIZE 16
 
 # define AU32_BYTE alignas(t_u32) t_u8
@@ -33,7 +33,7 @@ int						ft_ssl_md5(int argc, char **argv);
 */
 typedef struct			s_md5state {
 	t_u32		s[4];
-	AU32_BYTE	buf[MD5_CHUNK_SIZE];
+	AU32_BYTE	buf[MD5_BLOCK_SIZE];
 	int			bufsz;
 	t_u64		len;
 }						t_md5state;

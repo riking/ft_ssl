@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 15:58:06 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 16:32:03 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 16:26:06 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		md5_writelen(t_md5state *st)
 {
 	t_u64		len;
 	int			i;
-	t_u8		buf[MD5_CHUNK_SIZE];
+	t_u8		buf[MD5_BLOCK_SIZE];
 
 	ft_bzero(buf, sizeof(buf));
 	buf[0] = 0x80;

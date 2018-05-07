@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 21:01:09 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/04 17:15:59 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 16:25:48 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void					md5_block(t_md5state *st, t_u8 *buf)
 		x = (t_md5hack*)buf;
 	else
 	{
-		ft_memcpy((t_u8*)&copy, buf, MD5_CHUNK_SIZE);
+		ft_memcpy((t_u8*)&copy, buf, MD5_BLOCK_SIZE);
 		x = &copy;
 	}
 	ft_memcpy(save, st->s, sizeof(t_u32) * 4);

@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 18:26:47 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 15:05:01 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 16:39:40 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ typedef struct					s_ft_hash_name {
 
 extern const t_ft_hash_vtable	g_md5_hash_vtable;
 extern const t_ft_hash_vtable	g_sha256_hash_vtable;
+extern const t_ft_hash_vtable	g_blake2b_512_hash_vtable;
+extern const t_ft_hash_vtable	g_blake2b_384_hash_vtable;
+extern const t_ft_hash_vtable	g_blake2b_256_hash_vtable;
 
 extern const t_ft_hash_name		g_hash_list[];
 

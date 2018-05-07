@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 15:32:09 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 17:24:42 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 17:30:57 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static const t_blake2b_roundconf	g_blake2b_rounds[8] = {
 	{0, 4, 8, 12, 0, 4},
 	{1, 5, 9, 13, 1, 5},
 	{2, 6, 10, 14, 2, 6},
-	{3, 7, 11, 15, 3, 8},
+	{3, 7, 11, 15, 3, 7},
 	{0, 5, 10, 15, 8, 12},
 	{1, 6, 11, 12, 9, 13},
 	{2, 7, 8, 13, 10, 14},
@@ -108,19 +108,20 @@ static void							blake2b_round(
 	blake2b_roundop1(&g_blake2b_rounds[1], s, m, v);
 	blake2b_roundop1(&g_blake2b_rounds[2], s, m, v);
 	blake2b_roundop1(&g_blake2b_rounds[3], s, m, v);
+	ft_printf("[STATE0.3] %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX\n", v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11], v[12], v[13], v[14], v[15]);
 	blake2b_roundop2(&g_blake2b_rounds[0], s, m, v);
 	blake2b_roundop2(&g_blake2b_rounds[1], s, m, v);
 	blake2b_roundop2(&g_blake2b_rounds[2], s, m, v);
 	blake2b_roundop2(&g_blake2b_rounds[3], s, m, v);
 	ft_printf("[STATE1] %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX\n", v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11], v[12], v[13], v[14], v[15]);
-	blake2b_roundop(&g_blake2b_rounds[0], s, m, v);
-	blake2b_roundop(&g_blake2b_rounds[1], s, m, v);
-	blake2b_roundop(&g_blake2b_rounds[2], s, m, v);
-	blake2b_roundop(&g_blake2b_rounds[3], s, m, v);
-	blake2b_roundop(&g_blake2b_rounds[4], s, m, v);
-	blake2b_roundop(&g_blake2b_rounds[5], s, m, v);
-	blake2b_roundop(&g_blake2b_rounds[6], s, m, v);
-	blake2b_roundop(&g_blake2b_rounds[7], s, m, v);
+	blake2b_roundop1(&g_blake2b_rounds[4], s, m, v);
+	blake2b_roundop1(&g_blake2b_rounds[5], s, m, v);
+	blake2b_roundop1(&g_blake2b_rounds[6], s, m, v);
+	blake2b_roundop1(&g_blake2b_rounds[7], s, m, v);
+	blake2b_roundop2(&g_blake2b_rounds[4], s, m, v);
+	blake2b_roundop2(&g_blake2b_rounds[5], s, m, v);
+	blake2b_roundop2(&g_blake2b_rounds[6], s, m, v);
+	blake2b_roundop2(&g_blake2b_rounds[7], s, m, v);
 	//ft_printf("[STATE2] %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX %016llX\n", v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11], v[12], v[13], v[14], v[15]);
 }
 

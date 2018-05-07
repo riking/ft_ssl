@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 18:50:01 by kyork             #+#    #+#             */
-/*   Updated: 2018/04/25 21:13:53 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 16:25:28 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct				s_roundconf {
 ** x86 makes faster code if we just treat the input as an array of uint32s
 */
 typedef struct				s_md5hack {
-	t_u32		x[MD5_CHUNK_SIZE / 4];
+	t_u32		x[MD5_BLOCK_SIZE / 4];
 }							t_md5hack;
 
 extern const t_u32			g_md5_tvals[65];
