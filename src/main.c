@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 17:55:56 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 15:04:27 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/07 14:24:19 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ int			main(int argc, char **argv)
 	size_t			idx;
 
 	ft_set_progname(argv[0]);
-	if (argc == 0)
+	if (argc < 2)
 	{
 		ft_dprintf(2, "usage: %s command [command opts] [command args]\n",
 				ft_progname());
 		exit(2);
 	}
 	idx = 0;
-	while (g_command_list[idx].command_name)
+	while (g_command_list[idx].command_name && argv[1])
 	{
 		if (0 == ft_strcmp(g_command_list[idx].command_name, argv[1]))
 		{
