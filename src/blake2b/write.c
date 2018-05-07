@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 15:27:56 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 17:11:20 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/06 17:42:40 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # error Unsupported endianness define
 #endif
 
+/*
+** important - do NOT write the final block here!
+*/
+
 void			blake2b_write(t_blake2b_state *st, t_u8 *buf, size_t len)
 {
 	size_t	tmpsz;
@@ -34,12 +38,12 @@ void			blake2b_write(t_blake2b_state *st, t_u8 *buf, size_t len)
 		ft_memcpy(st->buf + st->bufsz, buf, tmpsz);
 		st->bufsz += tmpsz;
 		ADJ_SZ(buf, len, tmpsz);
-		if (st->bufsz == BLAKE2B_BLOCK_SIZE)
+		if (len > 0 && (st->bufsz == BLAKE2B_BLOCK_SIZE))
 			blake2b_block(st, st->buf, 0);
-		if (st->bufsz == BLAKE2B_BLOCK_SIZE)
+		if (len > 0 && (st->bufsz == BLAKE2B_BLOCK_SIZE))
 			st->bufsz = 0;
 	}
-	while (len >= BLAKE2B_BLOCK_SIZE)
+	while (len > BLAKE2B_BLOCK_SIZE)
 	{
 		blake2b_block(st, buf, 0);
 		ADJ_SZ(buf, len, BLAKE2B_BLOCK_SIZE);
