@@ -1,0 +1,5 @@
+correction 07 may 2018
+ - norm problem in blake2b
+ - you didn't test no arguments you doofus
+ - no NULL at end of commands list
+ - blake2b-256 output is broken
