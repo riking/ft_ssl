@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 19:30:14 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 15:05:58 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/07 14:34:07 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,12 @@ int				ft_ssl_hashmain(int argc, char **argv)
 	int			ret;
 
 	(void)argc;
-	if (hashmain_flag_init(&flags, argv[1]) < 0)
+	if (hashmain_flag_init(&flags, argv[0]) < 0)
 		return (2);
 	optparse.data = &flags;
 	optparse.onflag = &hashmain_onflag;
 	optparse.onarg = &hashmain_onarg;
-	if (parse_opts(&optparse, argv + 2) < 0)
+	if (parse_opts(&optparse, argv + 1) < 0)
 	{
 		ft_dprintf(2, "%s", g_hashmain_help);
 		return (2);
