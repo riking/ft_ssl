@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 11:01:11 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/07 17:18:38 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/07 18:50:38 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
-int					ft_isspace(int c);
 
 char				*ft_basename(char *path);
 
@@ -188,6 +187,57 @@ void				ft_ary_swap(t_array *ary, size_t i, size_t j);
 typedef int			(*t_sortfunc)(void *left, void *right, size_t size,
 						void *data);
 void				ft_ary_sort(t_array *ary, t_sortfunc cmp, void *cmp_data);
+
+/*
+** Reader/Writer vtable functions
+*/
+
+void				vtable_typecheck(const char *source,
+						const void *actual, const void *expectvt);
+
+typedef struct		s_ft_reader_vtable {
+	ssize_t		(*read)(void *state, char *buf, size_t len);
+	void		(*free)(void *state);
+}					t_ft_reader_vtable;
+typedef struct		s_ft_writer_vtable {
+	ssize_t		(*write)(void *state, const char *buf, size_t len);
+	void		(*free)(void *state);
+}					t_ft_writer_vtable;
+
+typedef struct		s_ft_reader {
+	const t_ft_reader_vtable	*vtable;
+	void						*state;
+}					t_ft_reader;
+typedef struct		s_ft_writer {
+	const t_ft_writer_vtable	*vtable;
+	void						*state;
+}					t_ft_writer;
+
+t_ft_reader			ft_reader_fd(int fd);
+
+t_ft_reader			ft_reader_str(const char *str, size_t len);
+size_t				ft_strreader_count(t_ft_reader obj);
+
+t_ft_reader			ft_reader_null(void);
+
+t_ft_writer			ft_writer_fd(int fd);
+
+t_ft_writer			ft_writer_str(char *buf, size_t buf_len);
+size_t				ft_strwriter_count(t_ft_writer obj);
+
+t_ft_writer			ft_writer_null(void);
+
+/*
+** ft_autostrwriter -- build up an in-memory string via writes
+** ft_autostrwriter_release -- Release control of the allocated string so it is
+** not destroyed when the writer is freed.  Further operations on the writer
+** except freeing are invalid.
+*/
+
+t_ft_writer			ft_autostrwriter(char **str);
+char				*ft_autostrwriter_get(t_ft_writer obj);
+void				ft_autostrwriter_release(t_ft_writer obj);
+size_t				ft_autostrwriter_count(t_ft_writer obj);
 
 /*
 ** Extra functions

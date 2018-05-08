@@ -6,11 +6,14 @@
 #    By: kyork <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/09 19:11:26 by kyork             #+#    #+#              #
-#    Updated: 2017/02/16 10:18:11 by kyork            ###   ########.fr        #
+#    Updated: 2018/05/07 19:15:32 by kyork            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
+
+ARCH		?= $(shell uname -m)
+OS			?= $(shell uname -s | tr A-Z a-z)
 
 FILENAMES	+= do_printf.c ft_strichr.c printer.c strout.c
 FILENAMES	+= parse_fmt.c parse_numflag.c
@@ -31,16 +34,33 @@ ifndef NO_WERROR
 	LDFLAGS += -Werror
 endif
 
+ifeq ($(OS),darwin)
+	VERSION = darwin
+else
+	VERSION = generic
+endif
+
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): libftprintf_$(VERSION).o
+	ar rcs $(NAME) $<
 	@printf "\e[32m\e[1m[OK]\e[m $$(basename $@)\n"
+
+libftprintf_darwin.o: exported_darwin.sym $(OBJS)
+	ld -o $@ -r -exported_symbols_list exported_darwin.sym $(OBJS)
+
+libftprintf_generic.o: $(OBJS)
+	ld -o $@ -r $(OBJS)
+
+exported_darwin.sym: exported.sym
+	<$^ sed "s/^/_/" >$@
 
 clean:
 	rm -rf build
+	rm -f exported_darwin.sym
+	rm -f libftprintf_darwin.o libftprintf_generic.o
 	@printf "\e[33m\e[1m[CLEAN]\e[m $$(basename $$(pwd))\n"
 
 fclean: clean
