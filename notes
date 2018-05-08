@@ -3,3 +3,6 @@ correction 07 may 2018
  - you didn't test no arguments you doofus
  - no NULL at end of commands list
  - blake2b-256 output is broken
+
+end of day 07 may 2018
+ - so you started an encodings folder. did you ever stop to think about decoding? >.>
