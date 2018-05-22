@@ -1,0 +1,9 @@
+_ft_printf
+_ft_dprintf
+_ft_snprintf
+_ft_asprintf
+_ft_perrorf
+_ft_vprintf
+_ft_vdprintf
+_ft_vsnprintf
+_ft_vasprintf

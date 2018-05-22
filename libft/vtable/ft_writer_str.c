@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:24:04 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/07 18:32:27 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/22 14:23:36 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_ft_writer					ft_writer_str(char *str, size_t len)
 	return (t_ft_writer){&g_ft_strwriter_vtable, st};
 }
 
-size_t				ft_strwriter_count(t_ft_writer obj)
+size_t						ft_strwriter_count(t_ft_writer obj)
 {
 	t_ft_strwriter_state	*st;
 

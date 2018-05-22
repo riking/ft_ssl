@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fmt_c.c                                            :+:      :+:    :+:   */
+/*   out_chr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/18 13:24:13 by kyork             #+#    #+#             */
-/*   Updated: 2016/10/21 20:58:52 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/09 17:37:24 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
 
 #ifdef _MSC_VER
 # error This file only functions properly for UTF-32 wide characters
+#endif
+
+/*
+** MacOS has a signed wint_t, but linux does not. (??)
+*/
+
+#ifdef linux
+# include <stdint.h>
+# define WINT int32_t
+#else
+# define WINT wint_t
 #endif
 
 static int		putchar_unicode(char *b, uint32_t cp)
@@ -50,13 +61,13 @@ static int		putchar_unicode(char *b, uint32_t cp)
 
 int				ft_printf_c(t_printf_parse *parse, va_list args)
 {
-	wint_t	c;
+	WINT	c;
 	char	buf[5];
 	int		len;
 
 	if (parse->lenmod == PF_SIZE_L)
 	{
-		c = va_arg(args, wint_t);
+		c = va_arg(args, WINT);
 		if (c < 0)
 			return (-1);
 		len = putchar_unicode(buf, c);

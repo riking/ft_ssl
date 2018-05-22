@@ -6,12 +6,13 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:20:02 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/07 18:21:51 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/09 17:35:01 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_writer.h"
 #include <stddef.h>
+#include <stdint.h>
 #include <unistd.h>
 
 static ssize_t				ft_fdwriter_write(void *state,

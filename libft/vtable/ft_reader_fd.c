@@ -6,12 +6,13 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:07:53 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/07 18:16:46 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/09 17:34:04 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_reader.h"
 #include <stddef.h>
+#include <stdint.h>
 #include <unistd.h>
 
 static ssize_t				ft_fdreader_read(void *state,

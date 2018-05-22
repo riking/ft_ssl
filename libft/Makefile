@@ -6,7 +6,7 @@
 #    By: kyork <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/22 09:02:39 by kyork             #+#    #+#              #
-#    Updated: 2018/05/22 14:16:15 by kyork            ###   ########.fr        #
+#    Updated: 2018/05/22 14:26:26 by kyork            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,10 +93,10 @@ LDFLAGS		+= -Wall -Wextra -Wmissing-prototypes
 
 CFLAGS		+= -Iincludes/
 
-ifndef NO_WERROR
+#ifndef NO_WERROR
 	CFLAGS += -Werror
 	LDFLAGS += -Werror
-endif
+#endif
 
 ifeq ($(DEBUG), 1)
 	#CFLAGS	+= -fsanitize=address
@@ -203,29 +203,32 @@ test: $(TESTBINS)
 norm:
 	norminette $(SRCS) libft.h | grep -e 'Warning' -e 'Error' -B1 || true
 
-build/test-%: build/test_%.o libft.a | build
+build/test-%: build/test_%.o libft.a
+	@mkdir -p $(@D)
 	$(CC) $(LDFLAGS) -o $@ $^
 
 # Without ASan
 
-build/libft_ft_strcmp.o: ft_strcmp.c libft.h | build
+build/libft_ft_strcmp.o: ft_strcmp.c libft.h
 	$(CC) $(filter-out -fsanitize=address,$(CFLAGS)) -c $< -o $@
 
-build/libft_ft_strncmp.o: ft_strncmp.c libft.h | build
+build/libft_ft_strncmp.o: ft_strncmp.c libft.h
 	$(CC) $(filter-out -fsanitize=address,$(CFLAGS)) -c $< -o $@
 
-build/test_strcmp.o: test_strcmp.c libft.h | build
+build/test_strcmp.o: test_strcmp.c libft.h
 	$(CC) $(filter-out -fsanitize=address,$(CFLAGS)) -c $< -o $@
 
-build/test_strncmp.o: test_strncmp.c libft.h | build
+build/test_strncmp.o: test_strncmp.c libft.h
 	$(CC) $(filter-out -fsanitize=address,$(CFLAGS)) -c $< -o $@
 
-build/test-strcmp: build/test_strcmp.o libft.a | build
+build/test-strcmp: build/test_strcmp.o libft.a
+	@mkdir -p $(@D)
 	$(CC) $(filter-out -fsanitize=address,$(LDFLAGS)) -o $@ $^
 
-build/test-strncmp: build/test_strncmp.o libft.a | build
+build/test-strncmp: build/test_strncmp.o libft.a
+	@mkdir -p $(@D)
 	$(CC) $(filter-out -fsanitize=address,$(LDFLAGS)) -o $@ $^
 
-build/test_quentin.o: test_quentin.c libft.h | build
+build/test_quentin.o: test_quentin.c libft.h
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
