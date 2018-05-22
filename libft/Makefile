@@ -6,7 +6,7 @@
 #    By: kyork <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/22 09:02:39 by kyork             #+#    #+#              #
-#    Updated: 2018/05/07 19:00:05 by kyork            ###   ########.fr        #
+#    Updated: 2018/05/22 14:16:15 by kyork            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -161,7 +161,7 @@ libft.a_linux:
 	ar -M <.script
 	rm .script
 
-libftfuncs.a: build $(OBJS)
+libftfuncs.a: $(OBJS)
 	ar rcs $@ $(OBJS)
 	@printf "\e[32m\e[1m[OK]\e[m $$(basename $@)\n"
 
