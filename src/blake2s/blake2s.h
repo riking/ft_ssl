@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 15:18:08 by kyork             #+#    #+#             */
-/*   Updated: 2018/07/27 12:43:17 by kyork            ###   ########.fr       */
+/*   Updated: 2018/07/27 13:09:46 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,5 @@ typedef struct			s_blake2s_roundconf {
 	int					xi;
 	int					yi;
 }						t_blake2s_roundconf;
-
-typedef struct			s_blake2s_roundvars {
-	t_blake2s_sigma	*s;
-	t_u64			*m;
-	t_u64			*v;
-}						t_blake2s_roundvars;
 
 #endif
