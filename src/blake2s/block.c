@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 15:32:09 by kyork             #+#    #+#             */
-/*   Updated: 2018/07/27 12:43:29 by kyork            ###   ########.fr       */
+/*   Updated: 2018/07/27 12:56:23 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # error Unsupported endianness define
 #endif
 
-static const t_blake2s_sigma		g_precomputed[12] = {
+static const t_blake2s_sigma		g_precomputed[10] = {
 	{0, 2, 4, 6, 1, 3, 5, 7, 8, 10, 12, 14, 9, 11, 13, 15},
 	{14, 4, 9, 13, 10, 8, 15, 6, 1, 0, 11, 5, 12, 2, 7, 3},
 	{11, 12, 5, 15, 8, 0, 2, 13, 10, 3, 7, 9, 14, 6, 1, 4},
@@ -139,14 +139,7 @@ void								blake2s_block(t_blake2s_state *state,
 
 void								blake2s_reset(t_blake2s_state *st)
 {
-	st->h[0] = g_blake2s_iv[0];
-	st->h[1] = g_blake2s_iv[1];
-	st->h[2] = g_blake2s_iv[2];
-	st->h[3] = g_blake2s_iv[3];
-	st->h[4] = g_blake2s_iv[4];
-	st->h[5] = g_blake2s_iv[5];
-	st->h[6] = g_blake2s_iv[6];
-	st->h[7] = g_blake2s_iv[7];
+	ft_memcpy(st->h, g_blake2s_iv, sizeof(g_blake2s_iv));
 	st->c[0] = 0;
 	st->c[1] = 0;
 	ft_bzero(st->buf, BLAKE2S_BLOCK_SIZE);
