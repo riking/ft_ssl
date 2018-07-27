@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 17:56:26 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 15:02:37 by kyork            ###   ########.fr       */
+/*   Updated: 2018/07/27 12:42:53 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_SSL_OPERATIONS_H
 
 # include <stdbool.h>
+# include <stddef.h>
 
 typedef int					(*t_commandfunc)(int argc, char** argv);
 

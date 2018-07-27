@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 11:01:11 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/07 18:50:38 by kyork            ###   ########.fr       */
+/*   Updated: 2018/07/27 12:43:01 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <string.h>
+# include <sys/types.h>
 
 # ifdef HAVE_ALLOCWRAP
 #  include <ft_alloc_wrap.h>

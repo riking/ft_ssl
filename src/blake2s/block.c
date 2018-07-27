@@ -6,23 +6,23 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 15:32:09 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/06 17:43:25 by kyork            ###   ########.fr       */
+/*   Updated: 2018/07/27 12:43:29 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "blake2b.h"
+#include "blake2s.h"
 
 #include <libft.h>
 
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-# define LEU64(buf) (*(t_u64*)(buf))
+# define LEU32(buf) (*(t_u32*)(buf))
 #elif __BYTE__ORDER == __ORDER_BIG_ENDIAN__
-# define LEU64(buf) (__builtin_bswap64(*(t_u64*)(buf)))
+# define LEU32(buf) (__builtin_bswap32(*(t_u32*)(buf)))
 #else
 # error Unsupported endianness define
 #endif
 
-static const t_blake2b_sigma		g_precomputed[12] = {
+static const t_blake2s_sigma		g_precomputed[12] = {
 	{0, 2, 4, 6, 1, 3, 5, 7, 8, 10, 12, 14, 9, 11, 13, 15},
 	{14, 4, 9, 13, 10, 8, 15, 6, 1, 0, 11, 5, 12, 2, 7, 3},
 	{11, 12, 5, 15, 8, 0, 2, 13, 10, 3, 7, 9, 14, 6, 1, 4},
@@ -33,22 +33,20 @@ static const t_blake2b_sigma		g_precomputed[12] = {
 	{13, 7, 12, 3, 11, 14, 1, 9, 5, 15, 8, 2, 0, 4, 6, 10},
 	{6, 14, 11, 0, 15, 9, 3, 8, 12, 13, 1, 10, 2, 7, 4, 5},
 	{10, 8, 7, 1, 2, 4, 6, 5, 15, 9, 3, 13, 11, 14, 12, 0},
-	{0, 2, 4, 6, 1, 3, 5, 7, 8, 10, 12, 14, 9, 11, 13, 15},
-	{14, 4, 9, 13, 10, 8, 15, 6, 1, 0, 11, 5, 12, 2, 7, 3},
 };
 
-static const t_u64					g_blake2b_iv[8] = {
-	0x6a09e667f3bcc908,
-	0xbb67ae8584caa73b,
-	0x3c6ef372fe94f82b,
-	0xa54ff53a5f1d36f1,
-	0x510e527fade682d1,
-	0x9b05688c2b3e6c1f,
-	0x1f83d9abfb41bd6b,
-	0x5be0cd19137e2179,
+static const t_u32					g_blake2s_iv[8] = {
+	0x6a09e667,
+	0xbb67ae85,
+	0x3c6ef372,
+	0xa54ff53a,
+	0x510e527f,
+	0x9b05688c,
+	0x1f83d9ab,
+	0x5be0cd19,
 };
 
-static const t_blake2b_roundconf	g_blake2b_rounds[8] = {
+static const t_blake2s_roundconf	g_blake2s_rounds[8] = {
 	{0, 4, 8, 12, 0, 4},
 	{1, 5, 9, 13, 1, 5},
 	{2, 6, 10, 14, 2, 6},
@@ -66,95 +64,95 @@ static const t_blake2b_roundconf	g_blake2b_rounds[8] = {
 #define XX m[s[q->xi]]
 #define YY m[s[q->yi]]
 
-static void							blake2b_roundop1(
-		const t_blake2b_roundconf *q, const t_blake2b_sigma s,
-		t_u64 *m, t_u64 *v)
+static void							blake2s_roundop1(
+		const t_blake2s_roundconf *q, const t_blake2s_sigma s,
+		t_u32 *m, t_u32 *v)
 {
 	AA += XX;
 	AA += BB;
 	DD ^= AA;
-	DD = ((DD << (64 - 32)) | (DD >> 32));
+	DD = ((DD << (32 - 16)) | (DD >> 16));
 	CC += DD;
 	BB ^= CC;
-	BB = ((BB << (64 - 24)) | (BB >> 24));
+	BB = ((BB << (32 - 12)) | (BB >> 12));
 }
 
-static void							blake2b_roundop2(
-		const t_blake2b_roundconf *q, const t_blake2b_sigma s,
-		t_u64 *m, t_u64 *v)
+static void							blake2s_roundop2(
+		const t_blake2s_roundconf *q, const t_blake2s_sigma s,
+		t_u32 *m, t_u32 *v)
 {
 	AA += YY;
 	AA += BB;
 	DD ^= AA;
-	DD = ((DD << (64 - 16)) | (DD >> 16));
+	DD = ((DD << (32 - 8)) | (DD >> 8));
 	CC += DD;
 	BB ^= CC;
-	BB = ((BB << (64 - 63)) | (BB >> 63));
+	BB = ((BB << (32 - 7)) | (BB >> 7));
 }
 
-static void							blake2b_round(
-		const t_blake2b_sigma s, t_u64 *m, t_u64 *v)
+static void							blake2s_round(
+		const t_blake2s_sigma s, t_u32 *m, t_u32 *v)
 {
-	blake2b_roundop1(&g_blake2b_rounds[0], s, m, v);
-	blake2b_roundop1(&g_blake2b_rounds[1], s, m, v);
-	blake2b_roundop1(&g_blake2b_rounds[2], s, m, v);
-	blake2b_roundop1(&g_blake2b_rounds[3], s, m, v);
-	blake2b_roundop2(&g_blake2b_rounds[0], s, m, v);
-	blake2b_roundop2(&g_blake2b_rounds[1], s, m, v);
-	blake2b_roundop2(&g_blake2b_rounds[2], s, m, v);
-	blake2b_roundop2(&g_blake2b_rounds[3], s, m, v);
-	blake2b_roundop1(&g_blake2b_rounds[4], s, m, v);
-	blake2b_roundop1(&g_blake2b_rounds[5], s, m, v);
-	blake2b_roundop1(&g_blake2b_rounds[6], s, m, v);
-	blake2b_roundop1(&g_blake2b_rounds[7], s, m, v);
-	blake2b_roundop2(&g_blake2b_rounds[4], s, m, v);
-	blake2b_roundop2(&g_blake2b_rounds[5], s, m, v);
-	blake2b_roundop2(&g_blake2b_rounds[6], s, m, v);
-	blake2b_roundop2(&g_blake2b_rounds[7], s, m, v);
+	blake2s_roundop1(&g_blake2s_rounds[0], s, m, v);
+	blake2s_roundop1(&g_blake2s_rounds[1], s, m, v);
+	blake2s_roundop1(&g_blake2s_rounds[2], s, m, v);
+	blake2s_roundop1(&g_blake2s_rounds[3], s, m, v);
+	blake2s_roundop2(&g_blake2s_rounds[0], s, m, v);
+	blake2s_roundop2(&g_blake2s_rounds[1], s, m, v);
+	blake2s_roundop2(&g_blake2s_rounds[2], s, m, v);
+	blake2s_roundop2(&g_blake2s_rounds[3], s, m, v);
+	blake2s_roundop1(&g_blake2s_rounds[4], s, m, v);
+	blake2s_roundop1(&g_blake2s_rounds[5], s, m, v);
+	blake2s_roundop1(&g_blake2s_rounds[6], s, m, v);
+	blake2s_roundop1(&g_blake2s_rounds[7], s, m, v);
+	blake2s_roundop2(&g_blake2s_rounds[4], s, m, v);
+	blake2s_roundop2(&g_blake2s_rounds[5], s, m, v);
+	blake2s_roundop2(&g_blake2s_rounds[6], s, m, v);
+	blake2s_roundop2(&g_blake2s_rounds[7], s, m, v);
 }
 
-void								blake2b_block(t_blake2b_state *state,
-		t_u8 *block, t_u64 flag)
+void								blake2s_block(t_blake2s_state *state,
+		t_u8 *block, t_u32 flag)
 {
-	t_u64		m[16];
-	t_u64		v[16];
+	t_u32		m[16];
+	t_u32		v[16];
 	int			i;
 
-	state->c[0] += BLAKE2B_BLOCK_SIZE;
-	if (state->c[0] < BLAKE2B_BLOCK_SIZE)
+	state->c[0] += BLAKE2S_BLOCK_SIZE;
+	if (state->c[0] < BLAKE2S_BLOCK_SIZE)
 		state->c[1]++;
-	ft_memcpy(&v[0], state->h, 8 * sizeof(t_u64));
-	ft_memcpy(&v[8], g_blake2b_iv, 8 * sizeof(t_u64));
+	ft_memcpy(&v[0], state->h, 8 * sizeof(t_u32));
+	ft_memcpy(&v[8], g_blake2s_iv, 8 * sizeof(t_u32));
 	v[12] ^= state->c[0];
 	v[13] ^= state->c[1];
 	v[14] ^= flag;
 	i = -1;
 	while (++i < 16)
-		m[i] = LEU64(&block[i * 8]);
+		m[i] = LEU32(&block[i * 4]);
 	i = -1;
-	while (++i < 12)
-		blake2b_round(g_precomputed[i], m, v);
+	while (++i < 10)
+		blake2s_round(g_precomputed[i], m, v);
 	i = -1;
 	while (++i < 8)
 		state->h[i] ^= v[i] ^ v[i + 8];
 }
 
-void								blake2b_reset(t_blake2b_state *st)
+void								blake2s_reset(t_blake2s_state *st)
 {
-	st->h[0] = g_blake2b_iv[0];
-	st->h[1] = g_blake2b_iv[1];
-	st->h[2] = g_blake2b_iv[2];
-	st->h[3] = g_blake2b_iv[3];
-	st->h[4] = g_blake2b_iv[4];
-	st->h[5] = g_blake2b_iv[5];
-	st->h[6] = g_blake2b_iv[6];
-	st->h[7] = g_blake2b_iv[7];
+	st->h[0] = g_blake2s_iv[0];
+	st->h[1] = g_blake2s_iv[1];
+	st->h[2] = g_blake2s_iv[2];
+	st->h[3] = g_blake2s_iv[3];
+	st->h[4] = g_blake2s_iv[4];
+	st->h[5] = g_blake2s_iv[5];
+	st->h[6] = g_blake2s_iv[6];
+	st->h[7] = g_blake2s_iv[7];
 	st->c[0] = 0;
 	st->c[1] = 0;
-	ft_bzero(st->buf, BLAKE2B_BLOCK_SIZE);
+	ft_bzero(st->buf, BLAKE2S_BLOCK_SIZE);
 	st->bufsz = 0;
-	st->h[0] ^= (t_u64)(st->out_size) | (((t_u64)st->keysz) << 8) |
+	st->h[0] ^= (t_u32)(st->out_size) | (((t_u32)st->keysz) << 8) |
 		(1 << 16) | (1 << 24);
 	if (st->keysz)
-		blake2b_block(st, st->key, 0);
+		blake2s_block(st, st->key, 0);
 }

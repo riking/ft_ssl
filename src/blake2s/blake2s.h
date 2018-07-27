@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 15:18:08 by kyork             #+#    #+#             */
-/*   Updated: 2018/07/27 12:21:04 by kyork            ###   ########.fr       */
+/*   Updated: 2018/07/27 12:43:17 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ typedef struct			s_blake2s_state {
 	t_u32		h[8];
 	t_u32		c[2];
 	size_t		out_size;
-	t_u8		buf[BLAKE2B_BLOCK_SIZE];
+	t_u8		buf[BLAKE2S_BLOCK_SIZE];
 	int			bufsz;
-	t_u8		key[BLAKE2B_BLOCK_SIZE];
+	t_u8		key[BLAKE2S_BLOCK_SIZE];
 	int			keysz;
 }						t_blake2s_state;
 
@@ -43,7 +43,7 @@ void					blake2s_finish(void *state, t_u8 *outbuf);
 void					blake2s_write(t_blake2s_state *state,
 							t_u8 *buf, size_t len);
 void					blake2s_block(t_blake2s_state *state, t_u8 *block,
-							t_u64 flag);
+							t_u32 flag);
 
 void					blake2s_reset(t_blake2s_state *state);
 
