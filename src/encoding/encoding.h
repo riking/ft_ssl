@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 14:59:08 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/07 20:02:02 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/22 14:15:28 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ typedef struct		s_hex_opts {
 size_t				hex_enclen(void *opts, const t_u8 *src, size_t len);
 size_t				hex_encode(void *opts, const t_u8 *src, size_t len,
 						t_u8 *dst);
-ssize_t				hex_decode(void *opts, const t_u8 *src, size_t len, 
+ssize_t				hex_decode(void *opts, const t_u8 *src, size_t len,
 						t_u8 *dst);
-extern const char	*g_hex_options;
 
 typedef struct		s_b64_opts {
 	const char		*alphabet;
@@ -57,13 +56,9 @@ t_b64_opts			*b64_fixopts(t_b64_opts *opts);
 size_t				b64_enclen(void *opts, const t_u8 *src, size_t len);
 size_t				b64_encode(void *opts, const t_u8 *src, size_t len,
 						t_u8 *dst);
-ssize_t				b64_decode(void *opts, const t_u8 *src, size_t len, 
+ssize_t				b64_decode(void *opts, const t_u8 *src, size_t len,
 						t_u8 *dst);
 extern const char	*g_b64_options;
-
-typedef struct		s_b64_decoder {
-
-}					t_b64_decoder;
 
 typedef struct		s_ft_encoder_vtable {
 	size_t			(*enclen)(void *, const t_u8 *, size_t);
@@ -71,6 +66,5 @@ typedef struct		s_ft_encoder_vtable {
 	ssize_t			(*decode)(void *, const t_u8 *, size_t, t_u8 *);
 	const char		*options_help;
 }					t_ft_encoder_vtable;
-
 
 #endif

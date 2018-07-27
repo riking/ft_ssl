@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 17:30:13 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/07 17:36:20 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/22 14:14:49 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_b64_opts	g_default_opts = {
 	ALPHABET_S, 0,
 };
 
-const char			*b64_options = ""
+const char			*g_b64_options = ""
 "-x pad or -x padding: use padding (=)\n"
 "-x raw or -x nopad: do not emit padding (=) (default)\n"
 "-x std: use standard encoding (63 64 is +/)\n"

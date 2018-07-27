@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 17:55:56 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/07 14:40:28 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/22 14:13:48 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	cmd_list(enum e_commandtype ty)
 	}
 }
 
-static void	usage()
+static void	usage(void)
 {
 	ft_dprintf(2, "\nStandard commands:\n");
 	cmd_list(CMD_OTHER);

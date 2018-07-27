@@ -6,7 +6,7 @@
 /*   By: kyork <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:16:45 by kyork             #+#    #+#             */
-/*   Updated: 2018/05/07 17:45:21 by kyork            ###   ########.fr       */
+/*   Updated: 2018/05/22 14:14:37 by kyork            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int			wr_group(t_b64_opts *opts, t_u32 val, t_u8 *dst)
 
 size_t				b64_encode(void *o, const t_u8 *src, size_t len, t_u8 *dst)
 {
-	t_b64_opts *opts;
+	t_b64_opts	*opts;
 	t_u8		*d;
 	t_u32		val;
 	size_t		sidx;
