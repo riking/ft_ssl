@@ -6,7 +6,7 @@
 #    By: kyork <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/09 19:11:26 by kyork             #+#    #+#              #
-#    Updated: 2018/05/06 17:00:20 by kyork            ###   ########.fr        #
+#    Updated: 2018/07/27 12:38:49 by kyork            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ FILENAMES	+= main.c operations.c optparse.c
 FILENAMES	+= md5/block.c md5/finish.c md5/md5_roundconf.c md5/vtable.c md5/write.c
 FILENAMES	+= sha256/finish.c sha256/round.c sha256/vtable.c sha256/write.c
 FILENAMES	+= blake2b/block.c blake2b/create.c blake2b/write.c blake2b/vtable.c
+FILENAMES	+= blake2s/block.c blake2s/create.c blake2s/write.c blake2s/vtable.c
 FILENAMES	+= hmac/create.c hmac/write.c
 FILENAMES	+= hashmain/opts.c hashmain/run.c hashmain/hmac.c
 
